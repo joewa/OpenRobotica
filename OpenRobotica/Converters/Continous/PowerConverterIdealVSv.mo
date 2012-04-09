@@ -1,0 +1,19 @@
+within OpenRobotica.Converters.Continous;
+model PowerConverterIdealVSv
+  "Sets output voltage whilst keeping in- and output power equal"
+ extends OpenRobotica.Interfaces.Electrical.SupplyPort;
+ extends OpenRobotica.Interfaces.Electrical.LoadPort;
+  Modelica.Blocks.Interfaces.RealInput vRef "Gain of input voltage" annotation (
+     Placement(transformation(
+        extent={{-20,-20},{20,20}},
+        rotation=180,
+        origin={106,0}), iconTransformation(
+        extent={{-20,-20},{20,20}},
+        rotation=180,
+        origin={96,0})));
+  constant Modelica.SIunits.Voltage vUnit=1;
+equation
+ vLoad = vRef * vUnit;
+ powerSupply = powerLoad;
+  annotation (Icon(graphics), Diagram(graphics));
+end PowerConverterIdealVSv;
